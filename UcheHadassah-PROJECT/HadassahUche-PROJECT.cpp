@@ -19,6 +19,7 @@ account.
 #include<cstring>
 #include<fstream>
 using namespace std;
+const int MAX = 500;
 //Declaring the Date struct to hold all dates
 struct Date
 {
@@ -31,23 +32,28 @@ struct Account
 {
 	char firstName[150];
 	char lastName[150];
-	char address[300];
 	char phoneNo[30];
+	char address[300];
+	char city[50];
+	char postCode[10];
 	Date birthDay;
 	int accountNo;
+    static int counter;
 };
+int Account::counter = 101;
 //Function Prototypes
-void OpenAcct(Account*);
-void CloseAcct(Account*);
-void Deposit(Account*);
-void Withdraw(Account*);
-void AcctInfo(Account*);
-void PrintAllAcct(Account*);
-void Search(Account*);
+void OpenAcct(Account[]);
+void CloseAcct(Account[]);
+void Deposit(Account[]);
+void Withdraw(Account[]);
+void AcctInfo(Account[]);
+void PrintAllAcct(Account[]);
+void Search(Account[]);
 
 int main()
 {
 	char Option;
+	Account account[MAX];
 	do
 	{
 		//Display the menu
@@ -59,9 +65,43 @@ int main()
 		cout << "\nP:Print All Accounts";
 		cout << "\nS:Search For Account";
 		cout << "\nQ:Quit";
-		cout << "\nEnter a choice:";
+		cout << "\nEnter the operation you wish to perform:";
 		cin >> Option;
 
-	} while (Option != 'q');
+		if (Option == 'O' || Option == 'o')
+		{
+			OpenAcct(account);
+		}
+	} while (Option != 'q'|| Option != 'Q');
 
+}
+void OpenAcct(Account newAcct[])
+{
+	for(int i = 0;i<MAX;i++)
+	{
+		cin.ignore();
+		cout << "Enter your first name:";
+		cin.getline(newAcct[i].firstName,150);
+		cout << "Enter your last name:";
+		cin.getline(newAcct[i].lastName, 150);
+		cout << "Enter your phone number:";
+		cin.getline(newAcct[i].phoneNo, 30);
+		cout << "Enter your street address:";
+		cin.getline(newAcct[i].address, 50);
+		cout << "Enter your city:";
+		cin.getline(newAcct[i].city, 50);
+		cout << "Enter your post code:";
+		cin.getline(newAcct[i].postCode, 10);
+		cout << "Enter your birthday."<< endl;
+		cout << "Year:";
+		cin >> newAcct[i].birthDay.year;
+		cout << "Month:";
+		cin >> newAcct[i].birthDay.month;
+		cout << "Day:";
+		cin >> newAcct[i].birthDay.day;
+		cin.ignore();
+		cout << "The account number is:" << newAcct[i].counter;
+		newAcct[i].counter++;
+		break;
+	}
 }
