@@ -48,7 +48,7 @@ void CloseAcct(Account[],int,int);
 void Deposit(Account[]);
 void Withdraw(Account[]);
 void AcctInfo(Account[]);
-void PrintAllAcct(Account[]);
+void PrintAllAcct(Account[],int);
 void Search(Account[]);
 
 int main()
@@ -81,6 +81,10 @@ int main()
 			cout << "Enter your account number:";
 			cin >> AccNum;
 			CloseAcct(account, AccNum, TotalAccount);
+		}
+		else if (Option == 'P' || Option == 'p')
+		{
+			PrintAllAcct(account, TotalAccount);
 		}
 	} while (Option != 'q'&& Option != 'Q');
 
@@ -127,7 +131,14 @@ void CloseAcct(Account account[],int Number, int Total)
 	cout << "Account " << Number << " not found!";
 }
 
-void PrintAllAcct(Account[])
+void PrintAllAcct(Account account[], int Total)
 {
-
+	for (int i = 0; i < Total; i++)
+	{
+		cout << "\nDetails for account " << account[i].accountNo;
+		cout << "\nOwner name:" << account[i].lastName << " " << account[i].firstName;
+		cout << "\nDOB:" << account[i].birthDay.day << "/" << account[i].birthDay.month << "/" << account[i].birthDay.year;
+		cout << "\nPhone Number:" << account[i].phoneNo;
+		cout << "\nAddress:" << account[i].address << "," << account[i].city << "," << account[i].postCode;
+	}
 }
