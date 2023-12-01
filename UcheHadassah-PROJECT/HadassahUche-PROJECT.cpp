@@ -58,7 +58,7 @@ int main()
 	do
 	{
 		//Display the menu
-		cout << "\nMENU";
+		cout << "MENU";
 		cout << "\nO:Open Account";
 		cout << "\nC:Close Account";
 		cout << "\nW:Withdraw";
@@ -81,12 +81,19 @@ int main()
 			cin >> AccNum;
 			CloseAcct(account, AccNum, TotalAccount);
 		}
+		else if (Option == 'A' || Option == 'a')
+		{
+			int AccNum;
+			cout << "Enter your account number:";
+			cin >> AccNum;
+			AcctInfo(account, AccNum);
+		}
 		else if (Option == 'P' || Option == 'p')
 		{
 			PrintAllAcct(account, TotalAccount);
 		}
+		cout << endl;
 	} while (Option != 'q'&& Option != 'Q');
-
 }
 //The function to open an account
 void OpenAcct(Account newAcct[],int Total)
@@ -121,6 +128,7 @@ void OpenAcct(Account newAcct[],int Total)
 //The function to close an account
 void CloseAcct(Account account[],int Number, int Total)
 {
+
 	int tot = Total - 1;
 	for (int i = 0; i < tot; i++)
 	{
@@ -155,14 +163,17 @@ void AcctInfo(Account account[],int Number)
 //This function prints all accounts
 void PrintAllAcct(Account account[], int Total)
 {
+	cout << "\nFOR PRIVACY REASONS, THE PERSONAL ACCOUNT NUMBERS WILL NOT BE DISPLAYED!";
 	for (int i = 0; i < Total; i++)
 	{
-		cout << "\nFOR PRIVACY REASONS, THE PERSONAL ACCOUNT NUMBERS WILL NOT BE DISPLAYED!";
-		cout << "\nDetails for account " << i + 1;
-		cout << "\nOwner name:" << account[i].lastName << " " << account[i].firstName;
-		cout << "\nDOB:" << account[i].birthDay.day << "/" << account[i].birthDay.month << "/" << account[i].birthDay.year;
-		cout << "\nPhone Number:" << account[i].phoneNo;
-		cout << "\nAddress:" << account[i].address << "," << account[i].city << "," << account[i].postCode;
+		if(account[i].isOpen == true)//Ensures that only opened accounts are displayed
+		{
+			cout << "\nDetails for account " << i + 1;
+			cout << "\nOwner name:" << account[i].lastName << " " << account[i].firstName;
+			cout << "\nDOB:" << account[i].birthDay.day << "/" << account[i].birthDay.month << "/" << account[i].birthDay.year;
+			cout << "\nPhone Number:" << account[i].phoneNo;
+			cout << "\nAddress:" << account[i].address << "," << account[i].city << "," << account[i].postCode;
+		}
 	}
 }
 
