@@ -37,11 +37,10 @@ struct Account
 	char city[50];
 	char postCode[10];
 	Date birthDay;
-	int accountNo;
+	static int accountNo;
 	bool isOpen;
-    static int counter;
 };
-int Account::counter = 101;
+int Account::accountNo = 101;
 //Function Prototypes
 void OpenAcct(Account[],int);
 void CloseAcct(Account[],int,int);
@@ -54,7 +53,7 @@ void Search(Account[]);
 int main()
 {
 	char Option;
-	static int TotalAccount = 0;
+	int TotalAccount = 0;
 	Account account[MAX];
 	do
 	{
@@ -81,6 +80,7 @@ int main()
 			cout << "Enter your account number:";
 			cin >> AccNum;
 			CloseAcct(account, AccNum, TotalAccount);
+			TotalAccount--;
 		}
 		else if (Option == 'P' || Option == 'p')
 		{
@@ -113,22 +113,24 @@ void OpenAcct(Account newAcct[],int Total)
 		cout << "Day:";
 		cin >> newAcct[i].birthDay.day;
 		cin.ignore();
-		cout << "The account number is:" << newAcct[i].counter;
-		newAcct[i].counter++;
+		cout << "The account number is:" << newAcct[i].accountNo;
+		newAcct[i].accountNo++;
+		newAcct[i].isOpen = true;
 }
 
 void CloseAcct(Account account[],int Number, int Total)
 {
 	for (int i = 0; i < Total; i++)
 	{
-		if (account[i].accountNo == Number && account[i].isOpen)
+		account[i].accountNo--;
+		if (account[i].accountNo == Number && account[i].isOpen == true)
 		{
-			cout << "Closing account " << Number;
+			cout << "\nClosing account " << Number;
 			account[i].isOpen = false;
 			return;
 		}
     }
-	cout << "Account " << Number << " not found!";
+	cout << "\nAccount " << Number << " not found!";
 }
 
 void PrintAllAcct(Account account[], int Total)
