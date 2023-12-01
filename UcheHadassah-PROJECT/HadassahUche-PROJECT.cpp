@@ -80,7 +80,6 @@ int main()
 			cout << "Enter your account number:";
 			cin >> AccNum;
 			CloseAcct(account, AccNum, TotalAccount);
-			TotalAccount--;
 		}
 		else if (Option == 'P' || Option == 'p')
 		{
@@ -89,6 +88,7 @@ int main()
 	} while (Option != 'q'&& Option != 'Q');
 
 }
+//The function to open an account
 void OpenAcct(Account newAcct[],int Total)
 {
 	int i = Total - 1;
@@ -114,13 +114,15 @@ void OpenAcct(Account newAcct[],int Total)
 		cin >> newAcct[i].birthDay.day;
 		cin.ignore();
 		cout << "The account number is:" << newAcct[i].accountNo;
-		newAcct[i].accountNo++;
-		newAcct[i].isOpen = true;
+		newAcct[i].accountNo++;//Increment the account number for the next customer
+		newAcct[i].isOpen = true;//made the account open
 }
 
+//The function to close an account
 void CloseAcct(Account account[],int Number, int Total)
 {
-	for (int i = 0; i < Total; i++)
+	int tot = Total - 1;
+	for (int i = 0; i < tot; i++)
 	{
 		account[i].accountNo--;
 		if (account[i].accountNo == Number && account[i].isOpen == true)
@@ -133,14 +135,39 @@ void CloseAcct(Account account[],int Number, int Total)
 	cout << "\nAccount " << Number << " not found!";
 }
 
+//this function allows the user to deposit money ito their account
+void Deposit(Account account[],int Number)
+{
+
+}
+
+//This function allows the user to withdraw money from their account. They are not allowed to withdraw more than they possess
+void Withdraw(Account account[],int Number)
+{
+
+}
+
+//this function allows the user to view their account info, including how much they have in the account
+void AcctInfo(Account account[],int Number)
+{
+
+}
+//This function prints all accounts
 void PrintAllAcct(Account account[], int Total)
 {
 	for (int i = 0; i < Total; i++)
 	{
-		cout << "\nDetails for account " << account[i].accountNo;
+		cout << "\nFOR PRIVACY REASONS, THE PERSONAL ACCOUNT NUMBERS WILL NOT BE DISPLAYED!";
+		cout << "\nDetails for account " << i + 1;
 		cout << "\nOwner name:" << account[i].lastName << " " << account[i].firstName;
 		cout << "\nDOB:" << account[i].birthDay.day << "/" << account[i].birthDay.month << "/" << account[i].birthDay.year;
 		cout << "\nPhone Number:" << account[i].phoneNo;
 		cout << "\nAddress:" << account[i].address << "," << account[i].city << "," << account[i].postCode;
 	}
+}
+
+//This function allows the user to search for their account by their account number
+void Search(Account account[],int Number)
+{
+
 }
