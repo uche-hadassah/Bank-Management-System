@@ -1,19 +1,4 @@
-/*In this second programming assignment you will implement a simple bank 
-application. Your bank application will support the following features:
-ü Open a new account, i.e. register a new user. The information stored is: first name, 
-last name, address, phone number, and birth date. The account is also assigned a 
-unique account number. 
-ü Close an account. All the information stored about the particular customer is 
-deleted. 
-ü Deposit a given amount to an account. The user has to provide the account 
-number.
-ü Withdraw a given amount from an account. The user has to provide the account 
-number and at no time can the balance of the account be less than zero.
-ü Display account information when given the account number.
-ü Print all the accounts sorted on customer account number, or the amount in the 
-account.
-ü Search and display the accounts based on customer last name, or phone number.
-ü Save all the accounts to a file and also allow to read in from a file
+/*This program is the implementation of a simple Bank Application
 */
 #include<iostream>
 #include<cstring>
@@ -46,8 +31,8 @@ double Account::balance = 0.0;
 //Function Prototypes
 void OpenAcct(Account[],int);
 void CloseAcct(Account[],int,int);
-void Deposit(Account[],int,int);
-void Withdraw(Account[],int,int);
+void Deposit(Account[],int,int,double);
+void Withdraw(Account[],int,int,double);
 void AcctInfo(Account[],int,int);
 void PrintAllAcct(Account[],int);
 void Search(Account[],int,int);
@@ -56,7 +41,9 @@ int main()
 {
 	char Option;
 	int TotalAccount = 0;
-	Account account[MAX];
+	int AccNum;
+	double amount;
+	Account* account = new Account[MAX];
 	do
 	{
 		//Display the menu
@@ -71,63 +58,89 @@ int main()
 		cout << "\nQ:Quit";
 		cout << "\nEnter the operation you wish to perform:";
 		cin >> Option;
+		switch(Option)
 
-		if (Option == 'O' || Option == 'o')
 		{
-			TotalAccount++;
-			OpenAcct(account, TotalAccount);
+		  case 'O':
+		  case 'o':
+				TotalAccount++;
+				OpenAcct(account, TotalAccount);
+				break;
+		  case 'C':
+		  case 'c':
+				cout << "Enter your account number:";
+				cin >> AccNum;
+				CloseAcct(account, AccNum, TotalAccount);
+				break;
+		  case 'D':
+			  case 'd':
+				cout << "Enter your account number:";
+				cin >> AccNum;
+				cout << "You can only deposit up to $5000 at once.";
+				cout << "How much will you like to deposit:";
+				do
+				{
+					cin >> amount;
+					while (amount < 0.1)
+					{
+						cout << "You cannot deposit $" << amount << ". Please enter a valid amount:";
+						cin >> amount;
+					}
+					while (amount > 5000.0)
+					{
+						cout << "You can only deposit up to $5000 at once. Enter the amount you wish to deposit:";
+						cin >> amount;
+					}
+				} while (amount < 0.1 || amount > 5000.0);
+				Deposit(account, TotalAccount, AccNum, amount);
+				break;
+			  case 'W':
+			  case 'w':
+				cout << "Enter your account number:";
+				cin >> AccNum;
+				cout << "How much will you like to withdraw:";
+				cin >> amount;
+				if (amount == 0.0)
+				{
+					cout << "No money has been withdrawn.";
+				}
+				else
+				{
+					Withdraw(account, TotalAccount, AccNum, amount);
+				}
+				break;
+			  case 'A':
+			  case 'a':
+				cout << "Enter your account number:";
+				cin >> AccNum;
+				AcctInfo(account, TotalAccount, AccNum);
+				break;
+			  case 'P':
+			  case 'p':
+				PrintAllAcct(account, TotalAccount);
+				break;
+			  case 'S':
+			  case 's':
+				cout << "Enter your account number:";
+				cin >> AccNum;
+				Search(account, TotalAccount, AccNum);
+				break;
+			  case 'Q':
+			  case 'q':
+				  cout << "Thank you for your time ^^";
+				break;
+			  default:
+				cout << "\nInvalid option. Please enter a valid option from the menu:";
+				break;
+			cout << endl;
 		}
-		else if (Option == 'C' || Option == 'c')
-		{
-			int AccNum;
-			cout << "Enter your account number:";
-			cin >> AccNum;
-			CloseAcct(account, AccNum, TotalAccount);
-		}
-		else if (Option == 'D' || Option == 'd')
-		{
-			int AccNum;
-			cout << "Enter your account number:";
-			cin >> AccNum;
-			Deposit(account, TotalAccount,AccNum);
-		}
-		else if (Option == 'W' || Option == 'w')
-		{
-			int AccNum;
-			cout << "Enter your account number:";
-			cin >> AccNum;
-			Withdraw(account,TotalAccount, AccNum);
-		}
-		else if (Option == 'A' || Option == 'a')
-		{
-			int AccNum;
-			cout << "Enter your account number:";
-			cin >> AccNum;
-			AcctInfo(account,TotalAccount, AccNum);
-		}
-		else if (Option == 'P' || Option == 'p')
-		{
-			PrintAllAcct(account, TotalAccount);
-		}
-		else if (Option == 'S' || Option == 's')
-		{
-			int AccNum;
-			cout << "Enter your account number:";
-			cin >> AccNum;
-			Search(account, TotalAccount, AccNum);
-		}
-		else if (Option == 'Q' || Option == 'q')
-		{
-			break;
-		}
-		else
-		{
-			cout << "Invalid option. Please enter a valid option from the menu:";
-		}
-		cout << endl;
-	} while (Option != 'Q' && Option != 'q');
+	} while (Option != 'q' && Option != 'Q');
+	delete[] account;
 }
-//The function to open an account
+
+/*Open a new account, i.e. register a new user.The information stored is : first name,
+last name, address, phone number, and birth date.The account is also assigned a
+unique account number.*/
 void OpenAcct(Account newAcct[],int Total)
 {
 	int i = Total - 1;
@@ -229,8 +242,9 @@ void OpenAcct(Account newAcct[],int Total)
 		newAcct[i].isOpen = true;//made the account open
 }
 
-//The function to close an account
-void CloseAcct(Account account[],int Number, int Total)
+/*Close an account. All the information stored about the particular customer is 
+deleted. */
+void CloseAcct(Account account[], int Number, int Total)
 {
 
 	int tot = Total - 1;
@@ -248,17 +262,14 @@ void CloseAcct(Account account[],int Number, int Total)
 }
 
 //this function allows the user to deposit money into their account
-void Deposit(Account account[],int total,int Number)
+void Deposit(Account account[],int total,int Number,double amount)
 {
-	double amount;
-	cout << "\nEnter the amount you wish to deposit:";
-	cin >> amount;
 	for (int i = 0; i < total; i++)
 	{
-		cout << "Account number at the beginning of the deposit function" << account[i].accountNo;
 		if (account[i].accountNo == Number && account[i].isOpen == true)
 		{
 			account[i].balance += amount;
+			cout << "\n" << amount << " has been successfully deposited into your account.";
 			cout << "\nCurrent balance:" << account[i].balance;
 			return;
 		}
@@ -266,14 +277,10 @@ void Deposit(Account account[],int total,int Number)
 }
 
 //This function allows the user to withdraw money from their account. They are not allowed to withdraw more than they possess
-void Withdraw(Account account[], int total,int Number)
+void Withdraw(Account account[], int total,int Number,double amount)
 {
-	double amount;
-	cout << "\nEnter the amount you wish to withdraw:";
-	cin >> amount;
 	for (int i = 0; i < total; i++)
 	{
-		cout << "Account number at the beginning of the withdraw function" << account[i].accountNo;
 		if (account[i].accountNo == Number && account[i].isOpen == true)
 		{
 			do
@@ -287,6 +294,7 @@ void Withdraw(Account account[], int total,int Number)
 				}
 			} while (account[i].balance < 0.1 && amount > 0.0);//added verification of user input here, incase I forget it later
 			account[i].balance -= amount;
+			cout << "\n" << amount << " has been successfully withdrawn from your account.";
 			cout << "Current balance:" << account[i].balance;
 			return;
 		}
