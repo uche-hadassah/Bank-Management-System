@@ -22,12 +22,11 @@ struct Account
 	char city[50];
 	char postCode[10];
 	Date birthDay;
-	static double balance;//I might need this when working with the deposit and withdraw functions
+	double balance = 0.0;//I might need this when working with the deposit and withdraw functions
 	static int accountNo;
 	bool isOpen;
 };
 int Account::accountNo = 101;
-double Account::balance = 0.0;
 //Function Prototypes
 void OpenAcct(Account[],int);
 void CloseAcct(Account[],int,int);
