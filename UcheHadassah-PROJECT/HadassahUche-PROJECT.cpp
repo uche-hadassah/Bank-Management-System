@@ -38,7 +38,7 @@ using namespace std;
 //Global Constant
 const int MAXACCT[500];
 //Function Prototypes
-
+void PrintMenu(const int);
 
 //The structure or Class to hold all relevant values for an account
 
