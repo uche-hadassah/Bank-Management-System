@@ -34,3 +34,18 @@ handling.*/
 #include<fstream>
 #include<cstring>
 using namespace std;
+
+//Global Constant
+const int MAXACCT[500];
+//Function Prototypes
+
+
+//The structure or Class to hold all relevant values for an account
+
+
+//The main function
+int main()
+{
+
+	return 0;
+}
