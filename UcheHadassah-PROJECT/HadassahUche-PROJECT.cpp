@@ -30,3 +30,7 @@ f) To store the customer information you can choose to use either a struct or a 
 To store all the accounts you can choose to use an array or a Vector. For the strings
 you can use either a c-string or the string class. You are also free to use exception
 handling.*/
+#include<iostream>
+#include<fstream>
+#include<cstring>
+using namespace std;
