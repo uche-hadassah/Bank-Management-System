@@ -36,16 +36,66 @@ handling.*/
 using namespace std;
 
 //Global Constant
-const int MAXACCT[500];
+const int MAXACCT= 500;
 //Function Prototypes
-void PrintMenu(const int);
+bool ValidOperation(char);
+
 
 //The structure or Class to hold all relevant values for an account
+struct AccountInfo
+{
+
+};
 
 
 //The main function
 int main()
 {
-
+	char op;
+	cout << "\nMENU";
+	cout << "\no:OPEN ACCOUNT";
+	cout << "\nc:CLOSE ACCOUNT";
+	cout << "\nd:DEPOSIT MONEY";
+	cout << "\nw:WITHDRAW MONEY";
+	cout << "\na:ACCOUNT INFO";
+	cout << "\nPRINT ALL ACCOUNTS(*must have admistrator key)";
+	cout << "\ns:SEARCH FOR ACCOUNT";
+	cout << "\nq:QUIT";
+	cout << "\nEnter an operation:";
+	cin >> op;
+	while (op != 'q' && op != 'Q')
+	{
+		while (!ValidOperation(op))
+		{
+			cout << "Invalid Operation. Please enter a valid operation:";
+			cin >> op;
+		}
+	}
 	return 0;
+}
+
+//The function to print the menu
+bool ValidOperation(char operation)
+{
+		switch(operation)
+		{
+		case 'o':
+		case 'O':return true;
+		case 'c':
+		case 'C':return true;
+		case 'd':
+		case 'D':return true;
+		case 'w':
+		case 'W':return true;
+		case 'a':
+		case 'A':return true;
+		case 'p':
+		case 'P':return true;
+		case 's':
+		case 'S':return true;
+		case 'q':
+		case 'Q':return true;
+		default:
+			return false;
+		}
 }
