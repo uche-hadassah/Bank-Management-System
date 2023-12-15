@@ -42,9 +42,20 @@ bool ValidOperation(char);
 
 
 //The structure or Class to hold all relevant values for an account
+struct Date
+{
+	int day;
+	int month;
+	int year;
+};
 struct AccountInfo
 {
-
+	char firstName[150];
+	char lastName[150];
+	char address[300];
+	char phoneNo[30];
+	Date birthDay;
+	int acctNo;//If less than 18 years, unable to open account
 };
 
 
@@ -58,7 +69,7 @@ int main()
 	cout << "\nd:DEPOSIT MONEY";
 	cout << "\nw:WITHDRAW MONEY";
 	cout << "\na:ACCOUNT INFO";
-	cout << "\nPRINT ALL ACCOUNTS(*must have admistrator key)";
+	cout << "\np:PRINT ALL ACCOUNTS(*must have admistrator key)";
 	cout << "\ns:SEARCH FOR ACCOUNT";
 	cout << "\nq:QUIT";
 	cout << "\nEnter an operation:";
@@ -77,25 +88,20 @@ int main()
 //The function to print the menu
 bool ValidOperation(char operation)
 {
-		switch(operation)
-		{
-		case 'o':
-		case 'O':return true;
-		case 'c':
-		case 'C':return true;
-		case 'd':
-		case 'D':return true;
-		case 'w':
-		case 'W':return true;
-		case 'a':
-		case 'A':return true;
-		case 'p':
-		case 'P':return true;
-		case 's':
-		case 'S':return true;
-		case 'q':
-		case 'Q':return true;
-		default:
+		if(operation == 'o'||operation == 'O')
+			return true;
+		else if (operation == 'c' || operation == 'C')
+			return true;
+		else if (operation == 'd' || operation == 'D')
+			return true;
+		else if (operation == 'w' || operation == 'W')
+			return true;
+		else if (operation == 'a' || operation == 'A')
+			return true;
+		else if (operation == 'p' || operation == 'P')
+			return true;
+		else if (operation == 's' || operation == 'S')
+			return true;
+		else
 			return false;
-		}
 }
