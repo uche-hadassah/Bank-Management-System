@@ -55,6 +55,10 @@ private:
     string birthDate;
     double balance;
 };
+
+//Initializing the static member variable
+int BankAccount::nextAccountNumber = 1;
+
 //Function Prototypes
 void openAccount(BankAccount[], int&);
 void closeAccount(BankAccount[], int&, int);
