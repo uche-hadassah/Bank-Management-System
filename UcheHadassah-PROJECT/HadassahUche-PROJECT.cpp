@@ -92,7 +92,7 @@ int main()
 
     do {
         //Display menu options
-        cout << "===== BANK APPLICATION MENU ====="<<endl;
+        cout << "\n===== BANK APPLICATION MENU ====="<<endl;
         cout << "O <-> Open Account" << endl;
         cout << "C <-> Close Account" << endl;
         cout << "D <-> Deposit Money" << endl;
@@ -167,21 +167,94 @@ void openAccount(BankAccount accounts[], int& numOfAccounts)
         string firstName, lastName, address, phoneNumber;
         Date birthDate;
         cin.ignore();
-        cout << "\nEnter your first name:";
+        cout << "Enter your first name:";
         getline(cin,firstName);
-        cout << "\nEnter your last name:";
+        cout << "Enter your last name:";
         getline(cin, lastName);
-        cout << "\nEnter your address:";
+        cout << "Enter your address:";
         getline(cin, address);
-        cout << "\nEnter your phone number:";
+        cout << "Enter your phone number:";
         cin >> phoneNumber;
-        cout << "\nEnter your birth date-";//Add verification to this later
-        cout << "\nDay:";
-        cin >> birthDate.day;
-        cout << "\nMonth:";
-        cin >> birthDate.month;
-        cout << "\nYear:";
-        cin >> birthDate.year;
+        cout << "Enter your birth date-"<< endl;
+        cout << "Year:";
+        do
+        {
+            cin >> birthDate.year;
+            while (birthDate.year < 1924 || birthDate.year > 2024)
+            {
+                cout << "Invalid year! Please enter a valid year:";
+                cin >> birthDate.year;
+            }
+        } while (birthDate.year < 1924 || birthDate.year > 2024);//Validating user input for the year
+        if (birthDate.year > 2006)
+        {
+            cout << "Unfortunately, you are too young to open an account. Minimum age is 18 yrs"<< endl;
+            return;
+        }
+        cout << "Month:";
+        do
+        {
+            cin >> birthDate.month;
+            while (birthDate.month < 1 || birthDate.month > 12)
+            {
+                cout << "Invalid month.Please enter a valid month: ";
+                cin >> birthDate.month;
+            }
+        } while (birthDate.month < 1 || birthDate.month > 12);//Validating user input for the month
+        cout << "Day:";
+        if (birthDate.year % 4 == 0 && birthDate.month == 2)//Validating user input for feb. in a leap year
+        {
+            do
+            {
+                cin >> birthDate.day;
+                while (birthDate.day < 1 || birthDate.day > 29)
+                {
+                    cout << "Invalid day.Please enter a valid day for february:";
+                    cin >> birthDate.day;
+                }
+            } while (birthDate.day < 1 || birthDate.day > 29);
+            cin.ignore();
+        }
+        else if (birthDate.year % 4 != 0 && birthDate.month == 2)//Validating user input for feb.
+        {
+            do
+            {
+                cin >> birthDate.day;
+                while (birthDate.day < 1 || birthDate.day > 28)
+                {
+                    cout << "Invalid day.Please enter a valid day for february:";
+                    cin >> birthDate.day;
+                }
+            } while (birthDate.day < 1 || birthDate.day > 28);
+            cin.ignore();
+        }
+        else if (birthDate.month == 4 || birthDate.month == 6
+            || birthDate.month == 9 || birthDate.month == 11)//Validating user input for months ending at day 30
+        {
+            do
+            {
+                cin >> birthDate.day;
+                while (birthDate.day < 1 || birthDate.day > 30)
+                {
+                    cout << "Invalid day.Please enter a valid day for this month:";
+                    cin >> birthDate.day;
+                }
+            } while (birthDate.day < 1 || birthDate.day > 30);
+            cin.ignore();
+        }
+        else //Validating user input for every other month
+        {
+            do
+            {
+                cin >> birthDate.day;
+                while (birthDate.day < 1 || birthDate.day > 31)
+                {
+                    cout << "Invalid day.Please enter a valid day for this month:";
+                    cin >> birthDate.day;
+                }
+            } while (birthDate.day < 1 || birthDate.day > 31);
+            cin.ignore();
+        }
         accounts[numOfAccounts] = BankAccount(firstName, lastName, address, phoneNumber, birthDate);
         numOfAccounts++;
         cout << "\nYour account has been opened successfully. Account number: " << accounts[numOfAccounts - 1].getAccountNumber() << endl;
