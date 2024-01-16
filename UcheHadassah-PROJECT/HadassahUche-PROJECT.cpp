@@ -42,6 +42,8 @@ public:
     void deposit(double amount);
     void withdraw(double amount);
     void displayInfo();
+    //Getter for account number
+    int getAccountNumber() const;
 private:
     // Member variables
     static int nextAccountNumber;
