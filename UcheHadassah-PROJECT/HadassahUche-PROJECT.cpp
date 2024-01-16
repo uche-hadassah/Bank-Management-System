@@ -47,8 +47,8 @@ class BankAccount
 {
 public:
     //constructor
-    BankAccount(string firstName, string lastName, string address, string phoneNumber, Date birthDate);
     BankAccount();
+    BankAccount(string firstName, string lastName, string address, string phoneNumber, Date birthDate);
     //Functions to perform operations on the account
     void deposit(double amount);
     void withdraw(double amount);
@@ -79,6 +79,7 @@ void displayAccountInfo(const BankAccount[], int, int);
 void printAllAccounts(const BankAccount[], int);
 void searchByLastName(const BankAccount [], int , const string& );
 void searchByPhoneNumber(const BankAccount [], int , const string& );
+void searchAndDisplay(const BankAccount[], int);
 void saveToFile(const BankAccount [], int , const string& );
 void readFromFile(BankAccount [], int& , const string& );
 
@@ -87,14 +88,38 @@ int main()
     BankAccount accounts[maxAccounts];
     int numOfAccounts = 0;
 
-    int option;
+    char option;
 
     do {
         //Display menu options
-        cout << "\n===== BANK APPLICATION MENU =====";
-    } while (option != 0);
+        cout << "===== BANK APPLICATION MENU ====="<<endl;
+        cout << "O <-> Open Account" << endl;
+        cout << "C <-> Close Account" << endl;
+        cout << "D <-> Deposit Money" << endl;
+        cout << "W <-> Withdraw Money" << endl;
+        cout << "A <-> Display Account Information" << endl;
+        cout << "P <-> Print All Accounts" << endl;
+        cout << "S <-> Search For Account" << endl;
+        cout << "Q <-> Quit" << endl;
+        cout << "Enter your choice:";
+        cin >> option;
+        switch (option) {
+        case 'O':
+        case 'o':
+            openAccount(accounts, numOfAccounts);
+            break;
+        case 'Q':
+        case 'q':
+            cout << "Thank you for your time ^^" << endl;
+            break;
+        default:
+            cout << "Invalid choice. Please enter a valid option." << endl;
+        }
+    } while (option != 'q'&& option != 'Q');
 	return 0;
 }
+
+BankAccount::BankAccount(){}
 
 //Implementation of the BankAccount class functions
 BankAccount::BankAccount(string firstName, string lastName, string address, string phoneNumber,Date birthDate)
@@ -141,6 +166,7 @@ void openAccount(BankAccount accounts[], int& numOfAccounts)
     {
         string firstName, lastName, address, phoneNumber;
         Date birthDate;
+        cin.ignore();
         cout << "\nEnter your first name:";
         getline(cin,firstName);
         cout << "\nEnter your last name:";
@@ -164,5 +190,4 @@ void openAccount(BankAccount accounts[], int& numOfAccounts)
     {
         cout << "\nError: Maximum number of accounts reached." << endl;
     }
-    cin.ignore();
 }
