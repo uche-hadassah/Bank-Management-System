@@ -34,7 +34,11 @@ handling.*/
 #include<fstream>
 #include<string>
 using namespace std;
-class BankAccount {
+//Global constant
+const int maxAccounts = 100;
+
+class BankAccount 
+{
 public:
     //constructor
     BankAccount(string firstName, string lastName, string address, string phoneNumber, string birthDate);
@@ -73,6 +77,37 @@ void readFromFile(BankAccount [], int& , const string& );
 
 int main()
 {
-
+    
 	return 0;
+}
+
+//Implementation of the BankAccount class functions
+BankAccount::BankAccount(string firstName, string lastName, string address, string phoneNumber,string birthDate)
+    :accountNumber(nextAccountNumber++),firstName(firstName), lastName(lastName),
+    address(address), phoneNumber(phoneNumber),birthDate(birthDate),balance(0.0){}
+void BankAccount::deposit(double amount)
+{
+    balance += amount;
+    cout << "Successful Deposit. New balance: " << balance << endl;
+}
+void BankAccount::withdraw(double amount)
+{
+    if (balance >= amount)
+    {
+        balance -= amount;
+        cout << "Successful Withdrawal. New balance: " << balance << endl;
+    }
+    else
+    {
+        cout << "Insufficient Funds." << endl;
+    }
+}
+void BankAccount::displayInfo() {
+    cout << "Account Number: " << accountNumber << endl;
+    cout << "First Name: " << firstName << endl;
+    cout << "Last Name: " << lastName << endl;
+    cout << "Address: " << address << endl;
+    cout << "Phone Number: " << phoneNumber << endl;
+    cout << "Birth Date: " << birthDate << endl;
+    cout << "Balance: " << balance << endl;
 }
