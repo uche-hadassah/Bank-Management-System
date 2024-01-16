@@ -38,7 +38,15 @@ class BankAccount {
 public:
 
 private:
-
+    // Member variables
+    static int nextAccountNumber;
+    int accountNumber;
+    string firstName;
+    string lastName;
+    string address;
+    string phoneNumber;
+    string birthDate;
+    double balance;
 };
 //Function Prototypes
 void openAccount(BankAccount[], int&);
