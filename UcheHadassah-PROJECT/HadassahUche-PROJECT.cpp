@@ -38,6 +38,10 @@ class BankAccount {
 public:
     //constructor
     BankAccount(string firstName, string lastName, string address, string phoneNumber, string birthDate);
+    //Functions to perform operations on the account
+    void deposit(double amount);
+    void withdraw(double amount);
+    void displayInfo();
 private:
     // Member variables
     static int nextAccountNumber;
