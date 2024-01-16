@@ -102,7 +102,8 @@ void BankAccount::withdraw(double amount)
         cout << "Insufficient Funds." << endl;
     }
 }
-void BankAccount::displayInfo() {
+void BankAccount::displayInfo() 
+{
     cout << "Account Number: " << accountNumber << endl;
     cout << "First Name: " << firstName << endl;
     cout << "Last Name: " << lastName << endl;
@@ -110,4 +111,10 @@ void BankAccount::displayInfo() {
     cout << "Phone Number: " << phoneNumber << endl;
     cout << "Birth Date: " << birthDate << endl;
     cout << "Balance: " << balance << endl;
+}
+
+//Implementation of the getter function
+int BankAccount::getAccountNumber() const 
+{
+    return accountNumber;
 }
