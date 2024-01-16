@@ -37,11 +37,18 @@ using namespace std;
 //Global constant
 const int maxAccounts = 100;
 
+struct Date
+{
+    int day;
+    int month;
+    int year;
+};
 class BankAccount 
 {
 public:
     //constructor
-    BankAccount(string firstName, string lastName, string address, string phoneNumber, string birthDate);
+    BankAccount(string firstName, string lastName, string address, string phoneNumber, Date birthDate);
+    BankAccount();
     //Functions to perform operations on the account
     void deposit(double amount);
     void withdraw(double amount);
@@ -56,7 +63,7 @@ private:
     string lastName;
     string address;
     string phoneNumber;
-    string birthDate;
+   Date birthDate;
     double balance;
 };
 
@@ -77,12 +84,20 @@ void readFromFile(BankAccount [], int& , const string& );
 
 int main()
 {
-    
+    BankAccount accounts[maxAccounts];
+    int numOfAccounts = 0;
+
+    int option;
+
+    do {
+        //Display menu options
+        cout << "\n===== BANK APPLICATION MENU =====";
+    } while (option != 0);
 	return 0;
 }
 
 //Implementation of the BankAccount class functions
-BankAccount::BankAccount(string firstName, string lastName, string address, string phoneNumber,string birthDate)
+BankAccount::BankAccount(string firstName, string lastName, string address, string phoneNumber,Date birthDate)
     :accountNumber(nextAccountNumber++),firstName(firstName), lastName(lastName),
     address(address), phoneNumber(phoneNumber),birthDate(birthDate),balance(0.0){}
 void BankAccount::deposit(double amount)
@@ -109,7 +124,7 @@ void BankAccount::displayInfo()
     cout << "Last Name: " << lastName << endl;
     cout << "Address: " << address << endl;
     cout << "Phone Number: " << phoneNumber << endl;
-    cout << "Birth Date: " << birthDate << endl;
+    cout << "Birth Date: " << birthDate.day <<"/"<< birthDate.month<<"/"<< birthDate.year << endl;
     cout << "Balance: " << balance << endl;
 }
 
@@ -122,9 +137,10 @@ int BankAccount::getAccountNumber() const
 //Implementation for the openAccount function
 void openAccount(BankAccount accounts[], int& numOfAccounts)
 {
-    if (numOfAccounts < 100)
+    if (numOfAccounts < maxAccounts)
     {
-        string firstName, lastName, address, phoneNumber, birthDate;
+        string firstName, lastName, address, phoneNumber;
+        Date birthDate;
         cout << "\nEnter your first name:";
         getline(cin,firstName);
         cout << "\nEnter your last name:";
@@ -133,5 +149,20 @@ void openAccount(BankAccount accounts[], int& numOfAccounts)
         getline(cin, address);
         cout << "\nEnter your phone number:";
         cin >> phoneNumber;
+        cout << "\nEnter your birth date-";//Add verification to this later
+        cout << "\nDay:";
+        cin >> birthDate.day;
+        cout << "\nMonth:";
+        cin >> birthDate.month;
+        cout << "\nYear:";
+        cin >> birthDate.year;
+        accounts[numOfAccounts] = BankAccount(firstName, lastName, address, phoneNumber, birthDate);
+        numOfAccounts++;
+        cout << "\nYour account has been opened successfully. Account number: " << accounts[numOfAccounts - 1].getAccountNumber() << endl;
     }
+    else
+    {
+        cout << "\nError: Maximum number of accounts reached." << endl;
+    }
+    cin.ignore();
 }
