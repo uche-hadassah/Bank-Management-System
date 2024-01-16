@@ -36,7 +36,8 @@ handling.*/
 using namespace std;
 class BankAccount {
 public:
-
+    //constructor
+    BankAccount(string firstName, string lastName, string address, string phoneNumber, string birthDate);
 private:
     // Member variables
     static int nextAccountNumber;
