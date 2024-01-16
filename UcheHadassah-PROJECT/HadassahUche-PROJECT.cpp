@@ -118,3 +118,20 @@ int BankAccount::getAccountNumber() const
 {
     return accountNumber;
 }
+
+//Implementation for the openAccount function
+void openAccount(BankAccount accounts[], int& numOfAccounts)
+{
+    if (numOfAccounts < 100)
+    {
+        string firstName, lastName, address, phoneNumber, birthDate;
+        cout << "\nEnter your first name:";
+        getline(cin,firstName);
+        cout << "\nEnter your last name:";
+        getline(cin, lastName);
+        cout << "\nEnter your address:";
+        getline(cin, address);
+        cout << "\nEnter your phone number:";
+        cin >> phoneNumber;
+    }
+}
