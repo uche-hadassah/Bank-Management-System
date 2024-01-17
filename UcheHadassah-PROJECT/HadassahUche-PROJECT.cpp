@@ -437,7 +437,7 @@ void printAllAccounts(const BankAccount accounts[], int numOfAccounts)
     }
 }
 
-void searchByLastName(const BankAccount accounts[], int numOfAccounts, const std::string& lastName)
+void searchByLastName(const BankAccount accounts[], int numOfAccounts, const string& lastName)
 {
     bool found = false;
     cout << "Search Results for Last Name '" << lastName << "':" << endl;
@@ -455,7 +455,7 @@ void searchByLastName(const BankAccount accounts[], int numOfAccounts, const std
     }
 }
 
-void searchByPhoneNumber(const BankAccount accounts[], int numOfAccounts, const std::string& phoneNumber)
+void searchByPhoneNumber(const BankAccount accounts[], int numOfAccounts, const string& phoneNumber)
 {
     bool found = false;
     cout << "Search Results for Phone Number '" << phoneNumber << "':" << endl;
@@ -475,5 +475,31 @@ void searchByPhoneNumber(const BankAccount accounts[], int numOfAccounts, const 
 
 void searchAndDisplay(const BankAccount accounts[], int numOfAccounts)
 {
-
+    int choice;
+    cout << "Search by:" << endl;
+    cout << "1 <-> Last name" << endl;
+    cout << "2 <-> Phone number" << endl;
+    cout << "Enter your choice: ";
+    cin >> choice;
+    switch (choice)
+    {
+    case 1:
+    {
+        string searchLastName;
+        cout << "Enter the last name to search:";
+        cin >> searchLastName;
+        searchByLastName(accounts, numOfAccounts, searchLastName);
+        break;
+    }
+    case 2:
+    {
+        string searchPhoneNumber;
+        cout << "Enter the phone number to search:";
+        cin >> searchPhoneNumber;
+        searchByPhoneNumber(accounts, numOfAccounts, searchPhoneNumber);
+        break;
+    }
+    default:
+        cout << "Invalid choice. Please enter 1 or 2." << endl;
+    }
 }
