@@ -338,3 +338,7 @@ void deposit(BankAccount accounts[], int numOfAccounts, int accountNumber, doubl
         cout << "Error: Account not found!" << endl;
     }
 }
+void withdraw(BankAccount accounts[], int numOfAccounts, int accountNumber, double amount)
+{
+
+}
