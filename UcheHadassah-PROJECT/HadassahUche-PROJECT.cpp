@@ -1,22 +1,7 @@
-/*In this second programming assignment you will implement a simple bank
-application. Your bank application will support the following features:
-ü Open a new account, i.e. register a new user. The information stored is: first name,
-last name, address, phone number, and birth date. The account is also assigned a
-unique account number.
-ü Close an account. All the information stored about the particular customer is
-deleted.
-ü Deposit a given amount to an account. The user has to provide the account
-number.
-ü Withdraw a given amount from an account. The user has to provide the account
-number and at no time can the balance of the account be less than zero.
-ü Display account information when given the account number.
-ü Print all the accounts sorted on customer account number, or the amount in the
-account.
-ü Search and display the accounts based on customer last name, or phone number.
-ü Save all the accounts to a file and also allow to read in from a file
+/*
 REQUIREMENTS
 a) Your code has to be:
-- well-structured (indention, etc)
+
 - well-commented(at the top of the file, before each function, and for
 “important” parts of the code)
 - define variables, constants, etc following the programming style suggested
@@ -46,41 +31,23 @@ struct Date
 class BankAccount 
 {
 public:
-    //constructor
+    //constructors
     BankAccount();
     BankAccount(string firstName, string lastName, string address, string phoneNumber, Date birthDate);
+
     //Functions to perform operations on the account
     void deposit(double amount);
     void withdraw(double amount);
     void displayInfo() const;
-    //Getter for account number
+
+    //All the Getters
     int getAccountNumber() const;
-    //Getter for account balance
-    double getBalance() const
-    {
-        return balance;
-    }
-    //Getter for last name and phone number
-    string getFirstName() const
-    {
-        return firstName;
-    }
-    string getLastName() const
-    {
-        return lastName;
-    }
-    string getPhoneNumber() const
-    {
-        return phoneNumber;
-    }
-    string getAddress() const
-    {
-        return address;
-    }
-    Date getBirthDate() const
-    {
-        return birthDate;
-    }
+    double getBalance() const;
+    string getFirstName() const;
+    string getLastName() const;
+    string getPhoneNumber() const;
+    string getAddress() const;
+    Date getBirthDate() const;
 private:
     // Member variables
     static int nextAccountNumber;
@@ -143,6 +110,8 @@ int main()
         cout << "P <-> Print All Accounts" << endl;
         cout << "S <-> Search For Account" << endl;
         cout << "Q <-> Quit" << endl;
+
+        //get user choice
         cout << "Enter your choice:";
         cin >> option;
         switch (option) {
@@ -213,9 +182,9 @@ int main()
 	return 0;
 }
 
-BankAccount::BankAccount(){}
 
 //Implementation of the BankAccount class functions
+BankAccount::BankAccount() {}
 BankAccount::BankAccount(string firstName, string lastName, string address, string phoneNumber,Date birthDate)
     :accountNumber(nextAccountNumber++),firstName(firstName), lastName(lastName),
     address(address), phoneNumber(phoneNumber),birthDate(birthDate),balance(0.0){}
@@ -245,10 +214,34 @@ void BankAccount::displayInfo() const
     cout << "Balance: $" << balance << endl;
 }
 
-//Implementation of the getter function
+//Implementation for the getter functions
 int BankAccount::getAccountNumber() const 
 {
     return accountNumber;
+}
+double BankAccount::getBalance() const
+{
+    return balance;
+}
+string BankAccount::getFirstName() const
+{
+    return firstName;
+}
+string BankAccount::getLastName() const
+{
+    return lastName;
+}
+string BankAccount::getPhoneNumber() const
+{
+    return phoneNumber;
+}
+string BankAccount::getAddress() const
+{
+    return address;
+}
+Date BankAccount::getBirthDate() const
+{
+    return birthDate;
 }
 
 //Implementation for the openAccount function
@@ -357,9 +350,12 @@ void openAccount(BankAccount accounts[], int& numOfAccounts)
     }
 }
 
+//Implementation for the closeAccount function
 void closeAccount(BankAccount accounts[], int& numOfAccounts, int accountNumber)
 {
     int index = -1;//Initialize to an invalid index
+
+    // Find the index of the account with the given account number
     for (int i = 0; i < numOfAccounts; i++)
     {
         if (accounts[i].getAccountNumber() == accountNumber) 
@@ -385,9 +381,11 @@ void closeAccount(BankAccount accounts[], int& numOfAccounts, int accountNumber)
     }
 }
 
+//Implementation for the deposit function
 void deposit(BankAccount accounts[], int numOfAccounts, int accountNumber, double amount)
 {
     int index = -1;//initialize to an invalid index
+
     //Find the index of the account with a given account number
     for (int i = 0; i < numOfAccounts; i++)
     {
@@ -409,9 +407,11 @@ void deposit(BankAccount accounts[], int numOfAccounts, int accountNumber, doubl
     }
 }
 
+//Implementation for the withdraw function
 void withdraw(BankAccount accounts[], int numOfAccounts, int accountNumber, double amount)
 {
     int index = -1;//initialize to an invalid index
+
     //Find the index of the account with a given account number
     for (int i = 0; i < numOfAccounts; i++)
     {
@@ -433,6 +433,7 @@ void withdraw(BankAccount accounts[], int numOfAccounts, int accountNumber, doub
     }
 }
 
+//implementation for the displayAccountInfo function
 void displayAccountInfo(const BankAccount accounts[], int numOfAccounts, int accountNumber)
 {
     int index = -1;  // Initialize to an invalid index
@@ -458,6 +459,7 @@ void displayAccountInfo(const BankAccount accounts[], int numOfAccounts, int acc
     }
 }
 
+//Implementation for the printAllAccounts function. Prints them all according to account number
 void printAllAccounts(const BankAccount accounts[], int numOfAccounts) 
 {
     if (numOfAccounts > 0) 
@@ -475,6 +477,7 @@ void printAllAccounts(const BankAccount accounts[], int numOfAccounts)
     }
 }
 
+//Implementation for the searchByLastName function
 void searchByLastName(const BankAccount accounts[], int numOfAccounts, const string& lastName)
 {
     bool found = false;
@@ -493,6 +496,7 @@ void searchByLastName(const BankAccount accounts[], int numOfAccounts, const str
     }
 }
 
+//Implementation for the searchByPhoneNumber function
 void searchByPhoneNumber(const BankAccount accounts[], int numOfAccounts, const string& phoneNumber)
 {
     bool found = false;
@@ -511,6 +515,7 @@ void searchByPhoneNumber(const BankAccount accounts[], int numOfAccounts, const 
     }
 }
 
+//Implementation for the searchAndDisplay function
 void searchAndDisplay(const BankAccount accounts[], int numOfAccounts)
 {
     int choice;
@@ -542,6 +547,7 @@ void searchAndDisplay(const BankAccount accounts[], int numOfAccounts)
     }
 }
 
+//Implementation for the saveToFile function
 void saveToFile(const BankAccount accounts[], int numOfAccounts, const std::string& filename)
 {
     ofstream outFile(filename);
@@ -569,6 +575,7 @@ void saveToFile(const BankAccount accounts[], int numOfAccounts, const std::stri
     }
 }
 
+//Implementation for the readFromFile function
 void readFromFile(BankAccount accounts[], int& numOfAccounts, const string& filename)
 {
     ifstream inFile(filename);
