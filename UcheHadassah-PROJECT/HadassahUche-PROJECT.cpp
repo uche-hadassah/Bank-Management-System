@@ -60,6 +60,11 @@ public:
     {
         return balance;
     }
+    //Getter for last name
+    string getLastName() const
+    {
+        return lastName;
+    }
 private:
     // Member variables
     static int nextAccountNumber;
@@ -430,5 +435,18 @@ void printAllAccounts(const BankAccount accounts[], int numOfAccounts)
 
 void searchByLastName(const BankAccount accounts[], int numOfAccounts, const std::string& lastName)
 {
-
+    bool found = false;
+    cout << "Search Results for Last Name '" << lastName << "':" << endl;
+    for (int i = 0; i < numOfAccounts; i++) 
+    {
+        if (accounts[i].getLastName() == lastName) 
+        {
+            accounts[i].displayInfo();
+            found = true;
+        }
+    }
+    if (!found) 
+    {
+        cout << "No accounts found with the last name '" << lastName << "'." << endl;
+    }
 }
