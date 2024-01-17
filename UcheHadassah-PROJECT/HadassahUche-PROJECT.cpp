@@ -52,7 +52,7 @@ public:
     //Functions to perform operations on the account
     void deposit(double amount);
     void withdraw(double amount);
-    void displayInfo();
+    void displayInfo() const;
     //Getter for account number
     int getAccountNumber() const;
     //Getter for account balance
@@ -175,7 +175,7 @@ void BankAccount::withdraw(double amount)
         cout << "Insufficient Funds." << endl;
     }
 }
-void BankAccount::displayInfo() 
+void BankAccount::displayInfo() const
 {
     cout << "Account Number: " << accountNumber << endl;
     cout << "First Name: " << firstName << endl;
