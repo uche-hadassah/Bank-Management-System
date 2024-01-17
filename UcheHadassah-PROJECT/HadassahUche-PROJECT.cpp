@@ -121,6 +121,17 @@ int main()
             cin >> accountNumberToClose;
             closeAccount(accounts, numOfAccounts, accountNumberToClose);
             break;
+        case 'D':
+        case 'd':
+            // Assuming the user knows the account number for deposit
+            int accountNumberToDeposit;
+            double depositAmount;
+            cout << "Enter the account number to deposit into:";
+            cin >> accountNumberToDeposit;
+            cout << "Enter the amount you wish to deposit:";
+            cin >> depositAmount;
+            deposit(accounts, numOfAccounts, accountNumberToDeposit, depositAmount);
+            break;
         case 'Q':
         case 'q':
             cout << "Thank you for your time ^^" << endl;
@@ -141,7 +152,6 @@ BankAccount::BankAccount(string firstName, string lastName, string address, stri
 void BankAccount::deposit(double amount)
 {
     balance += amount;
-    cout << "Successful Deposit. New balance: " << balance << endl;
 }
 void BankAccount::withdraw(double amount)
 {
