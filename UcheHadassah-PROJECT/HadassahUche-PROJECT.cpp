@@ -454,6 +454,7 @@ void searchByLastName(const BankAccount accounts[], int numOfAccounts, const std
         cout << "No accounts found with the last name '" << lastName << "'." << endl;
     }
 }
+
 void searchByPhoneNumber(const BankAccount accounts[], int numOfAccounts, const std::string& phoneNumber)
 {
     bool found = false;
@@ -470,4 +471,9 @@ void searchByPhoneNumber(const BankAccount accounts[], int numOfAccounts, const 
     {
         cout << "No accounts found with the phone number '" << phoneNumber << "'." << endl;
     }
+}
+
+void searchAndDisplay(const BankAccount accounts[], int numOfAccounts)
+{
+
 }
