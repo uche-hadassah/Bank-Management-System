@@ -340,5 +340,24 @@ void deposit(BankAccount accounts[], int numOfAccounts, int accountNumber, doubl
 }
 void withdraw(BankAccount accounts[], int numOfAccounts, int accountNumber, double amount)
 {
-
+    int index = -1;//initialize to an invalid index
+    //Find the index of the account with a given account number
+    for (int i = 0; i < numOfAccounts; i++)
+    {
+        if (accounts[i].getAccountNumber() == accountNumber)
+        {
+            index = i;
+            break;
+        }
+    }
+    if (index != -1)
+    {
+        //perform the withdrawal
+        accounts[index].withdraw(amount);
+        cout << "Withdrawal successful. New balance: " << accounts[index].getBalance() << endl;
+    }
+    else
+    {
+        cout << "Error: Account not found!" << endl;
+    }
 }
