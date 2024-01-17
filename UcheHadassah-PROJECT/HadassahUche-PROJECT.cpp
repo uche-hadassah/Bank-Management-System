@@ -524,7 +524,38 @@ void searchAndDisplay(const BankAccount accounts[], int numOfAccounts)
     }
 }
 
-void readFromFile(BankAccount[], int&, const string&)
+void readFromFile(BankAccount accounts[], int& numOfAccounts, const string& filename)
+{
+    ifstream inFile(filename);
+    if (inFile.is_open()) 
+    {
+        // Reset the number of accounts
+        numOfAccounts = 0;
+
+        while (inFile) 
+        {
+            // Read account details from file
+            string firstName, lastName, address, phoneNumber;
+            Date birthDate;
+            double balance;
+
+            inFile >> firstName >> lastName >> address >> phoneNumber >> birthDate.day >> birthDate.month >> birthDate.year >> balance;
+
+            accounts[numOfAccounts] = BankAccount(firstName, lastName, address, phoneNumber, birthDate);
+            accounts[numOfAccounts].deposit(balance);  // Initially deposit the balance
+            numOfAccounts++;
+        }
+
+        inFile.close();
+        cout << "Account info is read in." << endl;
+    }
+    else 
+    {
+        cout << "Error: Cannot read in file!" << endl;
+    }
+}
+
+void saveToFile(const BankAccount accounts[], int numOfAccounts, const std::string& filename)
 {
 
 }
