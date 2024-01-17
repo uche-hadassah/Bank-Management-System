@@ -132,14 +132,6 @@ int main()
             cin >> depositAmount;
             deposit(accounts, numOfAccounts, accountNumberToDeposit, depositAmount);
             break;
-        case 'A':
-        case 'a':
-            // Assuming the user knows the account number for display
-            int accountNumberToDisplay;
-            cout << "Enter the account number to display: ";
-            cin >> accountNumberToDisplay;
-            displayAccountInfo(accounts, numOfAccounts, accountNumberToDisplay);
-            break;
         case 'W':
         case 'w':
             // Assuming the user knows the account number for withdrawal
@@ -150,6 +142,18 @@ int main()
             cout << "Enter the amount you wish to withdraw:";
             cin >> withdrawAmount;
             withdraw(accounts, numOfAccounts, accountNumberToWithdraw, withdrawAmount);
+            break;
+        case 'A':
+        case 'a':
+            // Assuming the user knows the account number for display
+            int accountNumberToDisplay;
+            cout << "Enter the account number to display: ";
+            cin >> accountNumberToDisplay;
+            displayAccountInfo(accounts, numOfAccounts, accountNumberToDisplay);
+            break;
+        case 'P':
+        case 'p':
+            printAllAccounts(accounts, numOfAccounts);
             break;
         case 'Q':
         case 'q':
