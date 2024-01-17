@@ -104,6 +104,22 @@ int main()
 
     char option;
 
+    cout << "Welcome" << endl;
+    cout << "Would you like to read an account from a file (y/n)? ";
+    cin >> option;
+
+    if (option == 'y' || option == 'Y') 
+    {
+        string fileName;
+        cout << "Enter file name: ";
+        cin >> fileName;
+
+        readFromFile(accounts, numOfAccounts, fileName);
+    }
+    else 
+    {
+        cout << "Alright" << endl;
+    }
     do {
         //Display menu options
         cout << "\n===== BANK APPLICATION MENU ====="<<endl;
@@ -506,4 +522,9 @@ void searchAndDisplay(const BankAccount accounts[], int numOfAccounts)
     default:
         cout << "Invalid choice." << endl;
     }
+}
+
+void readFromFile(BankAccount[], int&, const string&)
+{
+
 }
