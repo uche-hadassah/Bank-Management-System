@@ -60,10 +60,14 @@ public:
     {
         return balance;
     }
-    //Getter for last name
+    //Getter for last name and phone number
     string getLastName() const
     {
         return lastName;
+    }
+    string getPhoneNumber() const
+    {
+        return phoneNumber;
     }
 private:
     // Member variables
@@ -452,5 +456,18 @@ void searchByLastName(const BankAccount accounts[], int numOfAccounts, const std
 }
 void searchByPhoneNumber(const BankAccount accounts[], int numOfAccounts, const std::string& phoneNumber)
 {
-
+    bool found = false;
+    cout << "Search Results for Phone Number '" << phoneNumber << "':" << endl;
+    for (int i = 0; i < numOfAccounts; i++)
+    {
+        if (accounts[i].getPhoneNumber() == phoneNumber)
+        {
+            accounts[i].displayInfo();
+            found = true;
+        }
+    }
+    if (!found)
+    {
+        cout << "No accounts found with the phone number '" << phoneNumber << "'." << endl;
+    }
 }
