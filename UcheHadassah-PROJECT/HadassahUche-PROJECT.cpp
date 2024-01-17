@@ -132,6 +132,17 @@ int main()
             cin >> depositAmount;
             deposit(accounts, numOfAccounts, accountNumberToDeposit, depositAmount);
             break;
+        case 'W':
+        case 'w':
+            // Assuming the user knows the account number for withdrawal
+            int accountNumberToWithdraw;
+            double withdrawAmount;
+            cout << "Enter the account number to withdraw from:";
+            cin >> accountNumberToWithdraw;
+            cout << "Enter the amount you wish to withdraw:";
+            cin >> withdrawAmount;
+            withdraw(accounts, numOfAccounts, accountNumberToWithdraw, withdrawAmount);
+            break;
         case 'Q':
         case 'q':
             cout << "Thank you for your time ^^" << endl;
@@ -158,7 +169,6 @@ void BankAccount::withdraw(double amount)
     if (balance >= amount)
     {
         balance -= amount;
-        cout << "Successful Withdrawal. New balance: " << balance << endl;
     }
     else
     {
