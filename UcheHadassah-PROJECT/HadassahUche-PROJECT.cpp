@@ -108,6 +108,14 @@ int main()
         case 'o':
             openAccount(accounts, numOfAccounts);
             break;
+        case 'C':
+        case 'c':
+            //Assuming the user knows the account number
+            int accountNumberToClose;
+            cout << "Enter the account number to close:";
+            cin >> accountNumberToClose;
+            closeAccount(accounts, numOfAccounts, accountNumberToClose);
+            break;
         case 'Q':
         case 'q':
             cout << "Thank you for your time ^^" << endl;
