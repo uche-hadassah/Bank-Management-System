@@ -373,5 +373,25 @@ void withdraw(BankAccount accounts[], int numOfAccounts, int accountNumber, doub
 }
 void displayAccountInfo(const BankAccount accounts[], int numOfAccounts, int accountNumber)
 {
+    int index = -1;  // Initialize to an invalid index
 
+    // Find the index of the account with the given account number
+    for (int i = 0; i < numOfAccounts; i++) 
+    {
+        if (accounts[i].getAccountNumber() == accountNumber) 
+        {
+            index = i;
+            break;
+        }
+    }
+
+    if (index != -1) 
+    {
+        // Display account information
+        accounts[index].displayInfo();
+    }
+    else 
+    {
+        cout << "Error: Account not found." << endl;
+    }
 }
