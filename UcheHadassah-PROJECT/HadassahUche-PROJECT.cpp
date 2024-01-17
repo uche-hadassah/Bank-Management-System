@@ -371,3 +371,7 @@ void withdraw(BankAccount accounts[], int numOfAccounts, int accountNumber, doub
         cout << "Error: Account not found!" << endl;
     }
 }
+void displayAccountInfo(const BankAccount accounts[], int numOfAccounts, int accountNumber)
+{
+
+}
