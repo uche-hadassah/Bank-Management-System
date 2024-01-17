@@ -557,5 +557,5 @@ void readFromFile(BankAccount accounts[], int& numOfAccounts, const string& file
 
 void saveToFile(const BankAccount accounts[], int numOfAccounts, const std::string& filename)
 {
-
+    ofstream outFile(filename);
 }
