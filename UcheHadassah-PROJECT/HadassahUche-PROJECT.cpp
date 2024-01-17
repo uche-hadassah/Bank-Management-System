@@ -132,6 +132,14 @@ int main()
             cin >> depositAmount;
             deposit(accounts, numOfAccounts, accountNumberToDeposit, depositAmount);
             break;
+        case 'A':
+        case 'a':
+            // Assuming the user knows the account number for display
+            int accountNumberToDisplay;
+            cout << "Enter the account number to display: ";
+            cin >> accountNumberToDisplay;
+            displayAccountInfo(accounts, numOfAccounts, accountNumberToDisplay);
+            break;
         case 'W':
         case 'w':
             // Assuming the user knows the account number for withdrawal
@@ -183,7 +191,7 @@ void BankAccount::displayInfo() const
     cout << "Address: " << address << endl;
     cout << "Phone Number: " << phoneNumber << endl;
     cout << "Birth Date: " << birthDate.day <<"/"<< birthDate.month<<"/"<< birthDate.year << endl;
-    cout << "Balance: " << balance << endl;
+    cout << "Balance: $" << balance << endl;
 }
 
 //Implementation of the getter function
