@@ -337,6 +337,7 @@ void closeAccount(BankAccount accounts[], int& numOfAccounts, int accountNumber)
         cout << "Error: Account not found!" << endl;
     }
 }
+
 void deposit(BankAccount accounts[], int numOfAccounts, int accountNumber, double amount)
 {
     int index = -1;//initialize to an invalid index
@@ -360,6 +361,7 @@ void deposit(BankAccount accounts[], int numOfAccounts, int accountNumber, doubl
         cout << "Error: Account not found!" << endl;
     }
 }
+
 void withdraw(BankAccount accounts[], int numOfAccounts, int accountNumber, double amount)
 {
     int index = -1;//initialize to an invalid index
@@ -383,6 +385,7 @@ void withdraw(BankAccount accounts[], int numOfAccounts, int accountNumber, doub
         cout << "Error: Account not found!" << endl;
     }
 }
+
 void displayAccountInfo(const BankAccount accounts[], int numOfAccounts, int accountNumber)
 {
     int index = -1;  // Initialize to an invalid index
@@ -407,6 +410,7 @@ void displayAccountInfo(const BankAccount accounts[], int numOfAccounts, int acc
         cout << "Error: Account not found." << endl;
     }
 }
+
 void printAllAccounts(const BankAccount accounts[], int numOfAccounts) 
 {
     if (numOfAccounts > 0) 
@@ -422,4 +426,9 @@ void printAllAccounts(const BankAccount accounts[], int numOfAccounts)
     else {
         cout << "No accounts to display." << endl;
     }
+}
+
+void searchByLastName(const BankAccount accounts[], int numOfAccounts, const std::string& lastName)
+{
+
 }
