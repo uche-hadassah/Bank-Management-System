@@ -164,6 +164,10 @@ int main()
         case 'p':
             printAllAccounts(accounts, numOfAccounts);
             break;
+        case 'S':
+        case 's':
+            searchAndDisplay(accounts, numOfAccounts);
+            break;
         case 'Q':
         case 'q':
             cout << "Thank you for your time ^^" << endl;
@@ -500,6 +504,6 @@ void searchAndDisplay(const BankAccount accounts[], int numOfAccounts)
         break;
     }
     default:
-        cout << "Invalid choice. Please enter 1 or 2." << endl;
+        cout << "Invalid choice." << endl;
     }
 }
