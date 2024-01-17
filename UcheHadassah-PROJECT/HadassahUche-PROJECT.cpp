@@ -264,3 +264,12 @@ void openAccount(BankAccount accounts[], int& numOfAccounts)
         cout << "\nError: Maximum number of accounts reached." << endl;
     }
 }
+
+void closeAccount(BankAccount accounts[], int& numOfAccounts, int accountNumber)
+{
+    int index = -1;//Initialize to an invalid index
+    for (int i = 0; i < numOfAccounts; i++)
+    {
+
+    }
+}
