@@ -407,3 +407,19 @@ void displayAccountInfo(const BankAccount accounts[], int numOfAccounts, int acc
         cout << "Error: Account not found." << endl;
     }
 }
+void printAllAccounts(const BankAccount accounts[], int numOfAccounts) 
+{
+    if (numOfAccounts > 0) 
+    {
+        cout << "All Accounts:" << endl;
+        for (int i = 0; i < numOfAccounts; i++) 
+        {
+            cout<< "-------------------------" << endl;
+            accounts[i].displayInfo();
+        }
+        cout << "-------------------------" << endl;
+    }
+    else {
+        cout << "No accounts to display." << endl;
+    }
+}
