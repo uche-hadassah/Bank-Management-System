@@ -61,6 +61,10 @@ public:
         return balance;
     }
     //Getter for last name and phone number
+    string getFirstName() const
+    {
+        return firstName;
+    }
     string getLastName() const
     {
         return lastName;
@@ -68,6 +72,14 @@ public:
     string getPhoneNumber() const
     {
         return phoneNumber;
+    }
+    string getAddress() const
+    {
+        return address;
+    }
+    Date getBirthDate() const
+    {
+        return birthDate;
     }
 private:
     // Member variables
@@ -137,6 +149,8 @@ int main()
         case 'O':
         case 'o':
             openAccount(accounts, numOfAccounts);
+            //save accounts to file after opening an account
+            saveToFile(accounts, numOfAccounts, "accounts.txt");
             break;
         case 'C':
         case 'c':
@@ -156,6 +170,8 @@ int main()
             cout << "Enter the amount you wish to deposit:";
             cin >> depositAmount;
             deposit(accounts, numOfAccounts, accountNumberToDeposit, depositAmount);
+            //Save accounts after depositing money
+            saveToFile(accounts, numOfAccounts, "accounts.txt");
             break;
         case 'W':
         case 'w':
@@ -167,6 +183,8 @@ int main()
             cout << "Enter the amount you wish to withdraw:";
             cin >> withdrawAmount;
             withdraw(accounts, numOfAccounts, accountNumberToWithdraw, withdrawAmount);
+            //save accounts after depositing money
+            saveToFile(accounts, numOfAccounts, "accounts.txt");
             break;
         case 'A':
         case 'a':
@@ -524,6 +542,33 @@ void searchAndDisplay(const BankAccount accounts[], int numOfAccounts)
     }
 }
 
+void saveToFile(const BankAccount accounts[], int numOfAccounts, const std::string& filename)
+{
+    ofstream outFile(filename);
+    if (outFile.is_open()) 
+    {
+        for (int i = 0; i < numOfAccounts; i++) 
+        {
+            outFile << accounts[i].getAccountNumber() << " "
+                << accounts[i].getFirstName() << " "
+                << accounts[i].getLastName() << " "
+                << accounts[i].getAddress() << " "
+                << accounts[i].getPhoneNumber() << " "
+                << accounts[i].getBirthDate().day << " "
+                << accounts[i].getBirthDate().month << " "
+                << accounts[i].getBirthDate().year << " "
+                << accounts[i].getBalance() << endl;
+        }
+
+        outFile.close();
+        cout << "Accounts saved to file successfully." << endl;
+    }
+    else 
+    {
+        cout << "Error: Unable to open file for saving." << endl;
+    }
+}
+
 void readFromFile(BankAccount accounts[], int& numOfAccounts, const string& filename)
 {
     ifstream inFile(filename);
@@ -553,9 +598,4 @@ void readFromFile(BankAccount accounts[], int& numOfAccounts, const string& file
     {
         cout << "Error: Cannot read in file!" << endl;
     }
-}
-
-void saveToFile(const BankAccount accounts[], int numOfAccounts, const std::string& filename)
-{
-    ofstream outFile(filename);
 }
