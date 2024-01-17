@@ -55,6 +55,11 @@ public:
     void displayInfo();
     //Getter for account number
     int getAccountNumber() const;
+    //Getter for account balance
+    double getBalance() const
+    {
+        return balance;
+    }
 private:
     // Member variables
     static int nextAccountNumber;
@@ -302,5 +307,24 @@ void closeAccount(BankAccount accounts[], int& numOfAccounts, int accountNumber)
 }
 void deposit(BankAccount accounts[], int numOfAccounts, int accountNumber, double amount)
 {
-
+    int index = -1;//initialize to an invalid index
+    //Find the index of the account with a given account number
+    for (int i = 0; i < numOfAccounts; i++)
+    {
+        if (accounts[i].getAccountNumber() == accountNumber)
+        {
+            index = i;
+            break;
+        }
+    }
+    if (index != -1)
+    {
+        //perform the deposit
+        accounts[index].deposit(amount);
+        cout << "Deposit successful. New balance: " << accounts[index].getBalance() << endl;
+    }
+    else
+    {
+        cout << "Error: Account not found!" << endl;
+    }
 }
