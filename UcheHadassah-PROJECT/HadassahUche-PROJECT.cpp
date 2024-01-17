@@ -300,3 +300,7 @@ void closeAccount(BankAccount accounts[], int& numOfAccounts, int accountNumber)
         cout << "Error: Account not found!" << endl;
     }
 }
+void deposit(BankAccount accounts[], int numOfAccounts, int accountNumber, double amount)
+{
+
+}
