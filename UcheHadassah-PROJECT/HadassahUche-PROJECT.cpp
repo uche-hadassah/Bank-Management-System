@@ -270,6 +270,25 @@ void closeAccount(BankAccount accounts[], int& numOfAccounts, int accountNumber)
     int index = -1;//Initialize to an invalid index
     for (int i = 0; i < numOfAccounts; i++)
     {
-
+        if (accounts[i].getAccountNumber() == accountNumber) 
+        {
+            index = i;
+            break;
+        }
+    }
+    if (index != -1)
+    {
+        //shift remaining elements to fill the gap
+        for (int i = index; i < numOfAccounts - 1; i++)
+        {
+            accounts[i] = accounts[i + 1];
+        }
+        //decrement the number of accounts
+        numOfAccounts--;
+        cout << "Your account has been closed successfully." << endl;
+    }
+    else
+    {
+        cout << "Error: Account not found!" << endl;
     }
 }
