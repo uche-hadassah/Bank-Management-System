@@ -18,6 +18,7 @@ handling.*/
 #include<iostream>
 #include<fstream>
 #include<string>
+#include<limits>
 using namespace std;
 //Global constant
 const int maxAccounts = 100;
@@ -114,7 +115,20 @@ int main()
         //get user choice
         cout << "Enter your choice:";
         cin >> option;
-        switch (option) {
+
+        // Validate user input
+        while (cin.fail() || (option != 'O' && option != 'o' && option != 'C' && option != 'c'
+            && option != 'D' && option != 'd' && option != 'W' && option != 'w'
+            && option != 'A' && option != 'a' && option != 'P' && option != 'p'
+            && option != 'S' && option != 's' && option != 'Q' && option != 'q')) 
+        {
+            cout << "Invalid choice. Please enter a valid option: ";
+            cin.clear();                 // Clear the error flag
+            cin.ignore(numeric_limits<streamsize>::max(), '\n'); // Discard invalid input
+            cin >> option;               // Try reading again
+        }
+        switch (option) 
+        {
         case 'O':
         case 'o':
             openAccount(accounts, numOfAccounts);
