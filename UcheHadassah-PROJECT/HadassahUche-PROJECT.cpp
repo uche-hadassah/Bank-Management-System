@@ -1,8 +1,8 @@
 /*
 Name:Uche Hadassah 
 ID:U221N0883
-==BANK MANAGEMENT SYSTEM==
-This is a simple implementation of a bank management system
+==BANK MANAGEMENT SYSTEM PROJECT==
+This project is an implementation of a bank management system
 */
 #include<iostream>
 #include<fstream>
@@ -83,6 +83,17 @@ int main()
         cout << "Enter file name: ";
         cin >> fileName;
 
+        // Attempt to open the file
+        ifstream inFile(fileName);
+
+        // Keep prompting the user for a valid filename until the file is successfully opened
+        while (!inFile.is_open()) 
+        {
+            cerr << "Error: Cannot read in file!" << endl;
+            cout << "Enter file name again: ";
+            cin >> fileName;
+            inFile.open(fileName);
+        }
         readFromFile(accounts, numOfAccounts, fileName);
     }
     else 
@@ -113,9 +124,9 @@ int main()
             && option != 'S' && option != 's' && option != 'Q' && option != 'q')) 
         {
             cout << "Invalid choice. Please enter a valid option: ";
-            cin.clear();                 // Clear the error flag
+            cin.clear();// Clear the error flag
             cin.ignore(numeric_limits<streamsize>::max(), '\n'); // Discard invalid input
-            cin >> option;               // Try reading again
+            cin >> option;// Try reading again
         }
         switch (option) 
         {
@@ -156,7 +167,7 @@ int main()
             cout << "Enter the amount you wish to withdraw:";
             cin >> withdrawAmount;
             withdraw(accounts, numOfAccounts, accountNumberToWithdraw, withdrawAmount);
-            //save accounts after depositing money
+            //Save accounts after depositing money
             saveToFile(accounts, numOfAccounts, "accounts.txt");
             break;
         case 'A':
@@ -476,7 +487,8 @@ void printAllAccounts(const BankAccount accounts[], int numOfAccounts)
         }
         cout << "-------------------------" << endl;
     }
-    else {
+    else 
+    {
         cout << "No accounts to display." << endl;
     }
 }
