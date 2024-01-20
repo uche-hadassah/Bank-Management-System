@@ -1,20 +1,9 @@
 /*
-REQUIREMENTS
-a) Your code has to be:
-
-- well-commented(at the top of the file, before each function, and for
-“important” parts of the code)
-- define variables, constants, etc following the programming style suggested
-by the book
-b) No global variables
-c) Each operation of the application has to be handled by a separate function
-d) All functions have to appear after main
-e) Your program should be able to handle any user input. In case the user input is
-wrong you should print an error message before displaying the menu again.
-f) To store the customer information you can choose to use either a struct or a class.
-To store all the accounts you can choose to use an array or a Vector. For the strings
-you can use either a c-string or the string class. You are also free to use exception
-handling.*/
+Name:Uche Hadassah 
+ID:U221N0883
+==BANK MANAGEMENT SYSTEM==
+This is a simple implementation of a bank management system
+*/
 #include<iostream>
 #include<fstream>
 #include<string>
@@ -100,7 +89,8 @@ int main()
     {
         cout << "Proceeding to menu....." << endl;
     }
-    do {
+    do 
+    {
         //Display menu options
         cout << "\n===== BANK APPLICATION MENU ====="<<endl;
         cout << "O <-> Open Account" << endl;
@@ -187,7 +177,7 @@ int main()
             break;
         case 'Q':
         case 'q':
-            cout << "Thank you for your time ^^" << endl;
+            cout << "Thank you for using the bank application" << endl;
             break;
         default:
             cout << "Invalid choice. Please enter a valid option:" << endl;
