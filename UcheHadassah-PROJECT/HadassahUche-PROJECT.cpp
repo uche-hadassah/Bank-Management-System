@@ -97,7 +97,7 @@ int main()
     }
     else 
     {
-        cout << "Alright" << endl;
+        cout << "Proceeding to menu....." << endl;
     }
     do {
         //Display menu options
@@ -176,7 +176,7 @@ int main()
             cout << "Thank you for your time ^^" << endl;
             break;
         default:
-            cout << "Invalid choice. Please enter a valid option." << endl;
+            cout << "Invalid choice. Please enter a valid option:" << endl;
         }
     } while (option != 'q'&& option != 'Q');
 	return 0;
@@ -548,7 +548,7 @@ void searchAndDisplay(const BankAccount accounts[], int numOfAccounts)
 }
 
 //Implementation for the saveToFile function
-void saveToFile(const BankAccount accounts[], int numOfAccounts, const std::string& filename)
+void saveToFile(const BankAccount accounts[], int numOfAccounts, const string& filename)
 {
     ofstream outFile(filename);
     if (outFile.is_open()) 
@@ -560,9 +560,9 @@ void saveToFile(const BankAccount accounts[], int numOfAccounts, const std::stri
                 << accounts[i].getLastName() << " "
                 << accounts[i].getAddress() << " "
                 << accounts[i].getPhoneNumber() << " "
-                << accounts[i].getBirthDate().day << " "
-                << accounts[i].getBirthDate().month << " "
                 << accounts[i].getBirthDate().year << " "
+                << accounts[i].getBirthDate().month << " "
+                << accounts[i].getBirthDate().day << " "
                 << accounts[i].getBalance() << endl;
         }
 
